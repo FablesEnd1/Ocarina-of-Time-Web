@@ -56,26 +56,33 @@
     <div id="game"></div>
   </main>
 
-  <script>
-    EJS_player = "#game";
-    EJS_core = "n64";
-    EJS_gameName = "The Legend of Zelda - Ocarina of Time";
+  
+<script>
+  EJS_player = "#game";
+  EJS_core = "n64";
+  EJS_gameName = "The Legend of Zelda - Ocarina of Time";
 
-    EJS_pathtodata =
-      "https://cdn.emulatorjs.org/stable/data/";
+  EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
 
-    EJS_gameUrl =
-      "https://github.com/FablesEnd1/Ocarina-of-Time-Web/releases/download/V1.0/oot.n64";
+  EJS_gameUrl = "https://github.com/FablesEnd1/Ocarina-of-Time-Web/releases/download/V1.0/oot.n64";
 
-    EJS_startOnLoaded = true;
-    EJS_color = "#176b45";
+  EJS_startOnLoaded = true;
+  EJS_color = "#176b45";
 
-    EJS_onGameStart = function() {
-      document.getElementById("status").textContent =
-        "Game started";
-    };
-  </script>
+  window.addEventListener("error", function(event) {
+    document.getElementById("status").textContent =
+      "Error: " + (event.message || "Script failed to load");
+  });
 
-  <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
+  window.addEventListener("unhandledrejection", function(event) {
+    document.getElementById("status").textContent =
+      "Error: " + String(event.reason);
+  });
+
+  EJS_onGameStart = function() {
+    document.getElementById("status").textContent = "Game started";
+  };
+</script>
+  
 </body>
 </html>
